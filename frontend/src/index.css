@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary */
+  --color-forest: #24483B;
+  
+  /* Light surfaces */
+  --color-cream: #F9F8F6;
+  --color-background: #F7F5EF;
+  --color-surface: #EEEDE5;
+  --color-sage: #E3EBDD;
+  
+  /* Accent */
+  --color-terracotta: #C9785D;
+  --color-apricot: #E8B99A;
+  
+  /* Text */
+  --color-charcoal: #26352F;
+  --color-stone: #718078;
+  
+  /* Borders */
+  --color-border: #D9DED5;
+  
+  --font-heading: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply font-body text-charcoal bg-background antialiased selection:bg-forest/20 selection:text-forest;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-charcoal tracking-tight;
+  }
+}
+
+/* Animations & Transitions */
+@layer utilities {
+  .fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+  .slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .stagger-1 { animation-delay: 100ms; }
+  .stagger-2 { animation-delay: 200ms; }
+  .stagger-3 { animation-delay: 300ms; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .slide-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
